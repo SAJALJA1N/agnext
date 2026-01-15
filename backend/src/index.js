@@ -1,9 +1,10 @@
-const express = require('express');
 const path = require('path');
-const connectDB = require('./config/db');
-require('dotenv').config();
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
+const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/auth');
 const taskRoutes = require('./routes/tasks');
@@ -13,6 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Connect MongoDB
+console.log("MONGO_URI:", process.env.MONGO_URI);
 connectDB();
 
 // Middlewares
